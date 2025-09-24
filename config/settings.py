@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-aw13(&i*jq4!0_n)-2eab)_4o=8b7ry+9$^ww72)=x&z=sy43z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
@@ -38,13 +39,17 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.'
+]
+
+THIRD_PARTY_APPS = [
+    "rest_framework"
 ]
 
 LOCAL_APPS = [
-    'core.accesscontrol.app.CoreConfig'
+    'core.accesscontrol'
 ]
-
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +90,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

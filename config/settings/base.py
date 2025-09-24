@@ -6,17 +6,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-aw13(&i*jq4!0_n)-2eab)_4o=8b7ry+9$^ww72)=x&z=sy43z')
 
-INSTALLED_APPS = [
+# apps
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'core.apps.CoreConfig',
-
 ]
+
+LOCAL_APPS = [
+    'core.accesscontrol'
+]
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
