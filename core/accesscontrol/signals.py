@@ -17,6 +17,17 @@ def log_access_creation(sender, instance, created, **kwargs):
         with open('system_events.log', 'a') as f:
             f.write(log_message + '\n')
 
+        # Run anomaly detection on every new access event
+        from .anomaly_detector import AnomalyDetector
+        alerts = AnomalyDetector(instance).check_all()
+        for alert in alerts:
+            anomaly_msg = (
+                f"[{alert.timestamp.strftime('%Y-%m-%d %H:%M:%S')}] - ANOMALY [{alert.risk_level}] "
+                f"{alert.rule}: {alert.description}"
+            )
+            with open('system_events.log', 'a') as f:
+                f.write(anomaly_msg + '\n')
+
 
 @receiver(post_delete, sender=AccessLog)
 def log_access_deletion(sender, instance, **kwargs):
